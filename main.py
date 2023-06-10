@@ -31,18 +31,12 @@ class NewImageHandler(FileSystemEventHandler):
 
 
 def split_images(image_name, image_path):
-    subfolder_name = image_name.split('.')[0]
-    subfolder_path = os.path.join('./outputs/subimages', subfolder_name)
-    os.makedirs(subfolder_path, exist_ok=True)
-
-    image = cv2.imread(image_path, cv2.IMREAD_COLOR)
-    image = cv2.resize(image, (500, 500))
-    for i in range(0, image.shape[0], 100):
-        for j in range(0, image.shape[1], 100):
-            sub_image = image[i:i + 100, j:j + 100, :]
-            sub_image_path = os.path.join(subfolder_path, f'subimage_{i}_{j}.png')
-            cv2.imwrite(sub_image_path, sub_image)
-
+    try:
+        image = Image.open(image_path)
+        compressed_image_path = os.path.join('./outputs/compressed', image_name)
+        image.save(compressed_image_path, "JPEG", optimize=True, quality=10)
+    except:
+        pass
 
 def monitor_folder(folder_path):
     event_handler = NewImageHandler(split_images)
