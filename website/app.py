@@ -53,7 +53,7 @@ def handle_logs():
 @app.route('/trigger', methods=['POST'])
 def trigger():
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    log_message = f"Triggered at {current_time}\n"
+    log_message = f"Triggered/{current_time}\n"
 
     try:
         with open('trigger.log', 'a') as file:
@@ -70,7 +70,7 @@ def create_trigger_log_file():
     if not os.path.isfile('trigger.log'):
         try:
             with open('trigger.log', 'w') as file:
-                file.write('Trigger Log\n')
+                file.write()
             print("Created trigger.log file")
         except Exception as e:
             print(f"Failed to create trigger.log file: {str(e)}")
