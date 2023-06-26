@@ -26,9 +26,14 @@
             background-color: #0069d9;
         }
 
+        .table-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
         table {
             border-collapse: collapse;
-            width: 100%;
+            width: 45%;
         }
 
         th, td {
@@ -47,21 +52,39 @@
 
     <button id="triggerButton">Trigger</button>
 
-    <h2>Logs</h2>
-    <table id="logsTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Object Detected</th>
-                <th>Photo Capture</th>
-                <th>Image Name</th>
-                <th>Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Log rows will be inserted dynamically here -->
-        </tbody>
-    </table>
+    <div class="table-container">
+        <table id="logsTable1">
+            <caption>Logs Table 1</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Object Detected</th>
+                    <th>Photo Capture</th>
+                    <th>Image Name</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Log rows for table 1 will be inserted dynamically here -->
+            </tbody>
+        </table>
+
+        <table id="logsTable2">
+            <caption>Logs Table 2</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Object Detected</th>
+                    <th>Photo Capture</th>
+                    <th>Image Name</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Log rows for table 2 will be inserted dynamically here -->
+            </tbody>
+        </table>
+    </div>
 
     <script>
         // Function to handle trigger button click
@@ -81,12 +104,12 @@
 
         // Function to fetch logs and update the table
         function fetchLogs() {
-            fetch('/logs')
+            fetch('/logs1')
             .then(response => response.json())
             .then(data => {
                 const logs = data.logs;
-                const tableBody = document.querySelector('#logsTable tbody');
-                tableBody.innerHTML = '';
+                const tableBody1 = document.querySelector('#logsTable1 tbody');
+                tableBody1.innerHTML = '';
 
                 logs.forEach(log => {
                     const row = document.createElement('tr');
@@ -95,9 +118,32 @@
                         <td>${log.object_detected}</td>
                         <td>${log.photo_capture}</td>
                         <td>${log.image_name}</td>
-                        <td>${log.time}</td>
+                        <td>${convertTime(log.time)}</td>
                     `;
-                    tableBody.appendChild(row);
+                    tableBody1.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+            fetch('/logs2')
+            .then(response => response.json())
+            .then(data => {
+                const logs = data.logs;
+                const tableBody2 = document.querySelector('#logsTable2 tbody');
+                tableBody2.innerHTML = '';
+
+                logs.forEach(log => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${log.id}</td>
+                        <td>${log.object_detected}</td>
+                        <td>${log.photo_capture}</td>
+                        <td>${log.image_name}</td>
+                        <td>${convertTime(log.time)}</td>
+                    `;
+                    tableBody2.appendChild(row);
                 });
             })
             .catch(error => {
@@ -111,6 +157,12 @@
 
         // Fetch logs on page load
         fetchLogs();
+
+        // Function to convert milliseconds to a formatted time string
+        function convertTime(milliseconds) {
+            const date = new Date(milliseconds);
+            return date.toLocaleString();
+        }
     </script>
 </body>
 </html>
