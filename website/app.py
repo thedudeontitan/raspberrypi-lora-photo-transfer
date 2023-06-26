@@ -126,6 +126,32 @@ def get_image(image_path):
     file_path = os.path.join(folder_path, image_path)
     return send_file(file_path)
 
+@app.route('/gallery2')
+def gallery2():
+    images = []
+    folder_path = '/home/sirius/Work/photo_compression/website/static/LoRaComm_Img/'  # Update with your image folder path
+
+    for filename in os.listdir(folder_path):
+        if filename.endswith(('.jpg', '.jpeg', '.png', '.gif')):
+            file_path = os.path.join(folder_path, filename)
+            size = os.path.getsize(file_path)
+            modified_time = os.path.getmtime(file_path)
+
+            image = {
+                'name': filename,
+                'size': size,
+                'modified_time': modified_time
+            }
+            images.append(image)
+
+    return render_template('gallery2.html', images=images)
+
+@app.route('/images/<path:image_path>')
+def get_image2(image_path):
+    folder_path = '/home/sirius/Work/photo_compression/website/static/LoRaComm_Img/'  # Update with your image folder path
+    file_path = os.path.join(folder_path, image_path)
+    return send_file(file_path)
+
 @app.route('/trigger', methods=['POST'])
 def trigger():
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
