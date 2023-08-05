@@ -7,7 +7,8 @@
 
 </head>
 <body>
-    <h1>Image Gallery</h1>
+    <h1>Received & Captured</h1>
+    <div class="image-grid">
     {% for image in images %}
         <div class="image-container">
             <a href="{{ url_for('get_image', image_path=image['name']) }}" target="_blank">
@@ -18,5 +19,6 @@
             <p>Modified Time: {{ image['modified_time'] }}</p>
         </div>
     {% endfor %}
+    </div>
 </body>
 </html>
