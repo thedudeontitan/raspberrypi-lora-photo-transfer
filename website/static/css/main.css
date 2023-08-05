@@ -1,7 +1,9 @@
 #logsTable1 thead {
-  background-color: lightgreen;
+  background-color: green;
+  color: white;
 }
-h1{
+
+h1 {
   text-align: center;
   margin-top: 10vh;
 }
@@ -51,6 +53,7 @@ h1{
 #logsTable1 td {
   padding: 8px;
   border: 1px solid black;
+  text-align: center; /* Align cell content to center */
 }
 
 .button-container {
