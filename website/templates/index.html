@@ -1,67 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!-- <link type="text/css" rel="stylesheet" href="main.css"> -->
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trigger Page</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-      }
-
-      h1 {
-        margin-bottom: 20px;
-      }
-
-      button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-      }
-
-      button:hover {
-        background-color: #0069d9;
-      }
-
-      .table-container {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      table {
-        border-collapse: collapse;
-        width: 45%;
-      }
-
-      th,
-      td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
-
-      th {
-        background-color: #f2f2f2;
-      }
-    </style>
   </head>
   <body>
     <h1>Trigger Page</h1>
 
-    <button id="triggerButton">Trigger</button>
-    <a href="gallery">
-      <button id="gallery1Button">Gallery1</button>
-    </a>
-    <a href="gallery2"> <button id="gallery2Button">Gallery2</button></a>
-
     <div class="table-container">
       <table id="logsTable1">
-        <caption>
+        <!-- <caption>
           Logs Table 1
-        </caption>
+        </caption> -->
         <thead>
           <tr>
             <th>ID</th>
@@ -75,24 +29,16 @@
           <!-- Log rows for table 1 will be inserted dynamically here -->
         </tbody>
       </table>
-
-      <table id="logsTable2">
-        <caption>
-          Logs Table 2
-        </caption>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Object Detected</th>
-            <th>Photo Capture</th>
-            <th>Image Name</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Log rows for table 2 will be inserted dynamically here -->
-        </tbody>
-      </table>
+    </div>
+  
+    <div class="button-container">
+      <button id="triggerButton">Trigger</button>
+      <a href="gallery">
+        <button id="gallery1Button">Received & Captured</button>
+      </a>
+      <a href="gallery2">
+        <button id="gallery2Button">Transmitted</button>
+      </a>
     </div>
 
     <script>

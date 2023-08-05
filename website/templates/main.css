@@ -1,0 +1,82 @@
+/* Set the table heading background color to light green */
+#logsTable1 thead {
+  background-color: lightgreen;
+}
+
+/* Center the table and give it a fixed height */
+.table-container {
+  display: flex;
+  justify-content: center;
+  height: 300px; /* Adjust the height as needed */
+  overflow-y: auto; /* Add vertical scrollbar if content overflows */
+}
+
+/* Style the trigger button with green color */
+#triggerButton {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Style the gallery buttons with green color */
+#gallery1Button,
+#gallery2Button {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+/* Remove default link underline for gallery buttons */
+#gallery1Button:hover,
+#gallery2Button:hover {
+  text-decoration: none;
+}
+
+/* Add padding and border to the cells of the table */
+#logsTable1 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#logsTable1 th,
+#logsTable1 td {
+  padding: 8px;
+  border: 1px solid black;
+}
+
+/* Button container to justify buttons to the right */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Media query for responsiveness */
+@media only screen and (max-width: 600px) {
+  /* Stack the buttons below the table on small screens */
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  /* Reduce font size of buttons on small screens */
+  #triggerButton,
+  #gallery1Button,
+  #gallery2Button {
+    font-size: 14px;
+  }
+
+  /* Adjust the height of the table on small screens */
+  .table-container {
+    height: 200px; /* Adjust the height as needed */
+  }
+}

@@ -2,21 +2,8 @@
 <html>
 <head>
     <title>Image Gallery</title>
-    <style>
-        .image-container {
-            display: inline-block;
-            text-align: center;
-            margin: 10px;
-        }
-        .image-container img {
-            max-width: 200px;
-            max-height: 200px;
-            cursor: pointer;
-        }
-        .image-container p {
-            margin-top: 5px;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+
 </head>
 <body>
     <h1>Image Gallery</h1>
